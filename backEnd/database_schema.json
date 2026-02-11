@@ -1,0 +1,65 @@
+{
+  "collections": [
+    {
+      "name": "User",
+      "modelFile": "backEnd/models/User.js",
+      "fields": {
+        "nome": "String (Required)",
+        "email": "String (Required, Unique)",
+        "senha": "String (Required, Hidden)",
+        "role": "Enum ['admin', 'client'], Default: 'client'",
+        "telefone": "String",
+        "inscricoes": "Array of Course ObjectIds",
+        "createdAt": "Date (Default: now)"
+      }
+    },
+    {
+      "name": "Course",
+      "modelFile": "backEnd/models/Course.js",
+      "fields": {
+        "titulo": "String (Required)",
+        "descricao": "String",
+        "categoria": "Enum ['Unhas', 'Cílios', 'Sobrancelhas', 'Facial', 'Depilação'], Required",
+        "nivel": "Enum ['Básico', 'Intermediário', 'Avançado'], Default: 'Básico'",
+        "preco": "Number (Required)",
+        "data": "Date (Required)",
+        "vagas": "Number (Default: 0)",
+        "trilhaId": "Pathway ObjectId",
+        "imagem": "String (URL)",
+        "createdAt": "Date (Default: now)"
+      }
+    },
+    {
+      "name": "Product",
+      "modelFile": "backEnd/models/Product.js",
+      "fields": {
+        "nome": "String (Required)",
+        "descricao": "String",
+        "preco": "Number (Required)",
+        "categoria": "String (Required)",
+        "subcategoria": "String",
+        "tags": "Array of Strings",
+        "marca": "String (Default: 'Beauty Line')",
+        "estoque": "Number (Default: 0)",
+        "imagem": "String (URL)",
+        "createdAt": "Date (Default: now)"
+      }
+    },
+    {
+      "name": "Equipment",
+      "modelFile": "backEnd/models/Equipment.js",
+      "fields": {
+        "nome": "String (Required)",
+        "descricao": "String",
+        "imagem": "String (URL)",
+        "opcoes": {
+          "venda": "Number",
+          "aluguel": "Number"
+        },
+        "especificacoes": "Array of Strings",
+        "tag": "String (e.g. 'Novidade')",
+        "createdAt": "Date (Default: now)"
+      }
+    }
+  ]
+}

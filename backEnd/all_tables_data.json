@@ -1,0 +1,24 @@
+{
+    "database": "beautylineprofessional",
+    "tables": {
+        "users": [
+            {
+                "id": "4f73ebc0-c910-4e1f-bd09-0973a1e9e1db",
+                "nome": "John Doe",
+                "email": "john.doe@example.com",
+                "senha": "password123",
+                "telefone": "1234567890",
+                "role": "client",
+                "inscricoes": [],
+                "createdAt": "2026-02-11T19:33:43.744Z"
+            }
+        ],
+        "products": [],
+        "courses": [],
+        "equipment": []
+    },
+    "metadata": {
+        "description": "Consolidação de todas as tabelas (collections) do banco de dados local.",
+        "lastUpdated": "2026-02-11T17:42:30.000Z"
+    }
+}
