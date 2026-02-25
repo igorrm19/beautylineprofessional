@@ -26,13 +26,13 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true,
         lowercase: true
-    }
+    },
 
     subCategory: {
         type: String,
         trim: true,
         lowercase: true
-    }
+    },
 
     tags: [String],
 
