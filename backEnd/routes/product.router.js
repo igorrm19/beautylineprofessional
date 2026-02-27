@@ -7,11 +7,12 @@ const {
     updateProduct,
     deleteProduct
 } = require("../controllrs/product.controlrs");
+const auth = require("../middlware/auth");
 router.get("/product", getProducts);
 router.get("/product/:id", getProductById);
-router.post("/product", createProduct);
-router.put("/product/:id", updateProduct);
-router.delete("/product/:id", deleteProduct);
+router.post("/product", auth, createProduct);
+router.put("/product/:id", auth, updateProduct);
+router.delete("/product/:id", auth, deleteProduct);
 router.put("/product", (req, res) => {
     res.status(400).json({ message: "Route not allowed, add an id" });
 });
