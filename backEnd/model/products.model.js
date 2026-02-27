@@ -29,7 +29,11 @@ const productSchema = new mongoose.Schema({
         trim: true,
         lowercase: true
     },
-    tags: [String],
+    tags: [{
+        type: String,
+        trim: true,
+        lowercase: true
+    }],
     stock: {
         type: Number,
         min: 0
