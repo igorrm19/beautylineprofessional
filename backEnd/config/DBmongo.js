@@ -7,24 +7,26 @@ if (process.env.NODE_ENV !== 'production') {
     }
 }
 
-const connectDB = async () => {
+const connectDB = async (customUri) => {
     try {
         const options = {
             serverSelectionTimeoutMS: 5000,
             connectTimeoutMS: 10000,
         };
-        
+
         if (process.env.NODE_ENV !== 'production') {
             options.family = 4;
         }
 
-        const conn = await mongoose.connect(process.env.MONGODB_URI, options);
+        const uri = customUri || process.env.MONGODB_URI;
+        const conn = await mongoose.connect(uri, options);
 
         console.log(`MongoDB Connected: ${conn.connection.host}`);
 
     } catch (error) {
         console.error(`MongoDB Connection Error: ${error.message}`);
-        process.exit(1);
+        if (!customUri) process.exit(1);
+        throw error;
     }
 };
 

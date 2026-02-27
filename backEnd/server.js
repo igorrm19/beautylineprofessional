@@ -24,7 +24,9 @@ app.use(morgan("common"));
 app.use("/api", userRouter);
 app.use("/api", productRouter);
 
-connectDB();
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 if (require.main === module) {
   app.listen(PORT, () => {

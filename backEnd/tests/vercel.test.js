@@ -1,6 +1,7 @@
 const request = require('supertest');
 const app = require('../server');
 const mongoose = require('mongoose');
+const dbHandler = require('./dbHandler');
 
 describe('Beautyline Academy - Full Suite Integration Tests', () => {
     let testUser = {
@@ -13,14 +14,11 @@ describe('Beautyline Academy - Full Suite Integration Tests', () => {
     const originalSecret = process.env.JWT_SECRET;
 
     beforeAll(async () => {
-
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await dbHandler.connect();
     });
 
     afterAll(async () => {
-        if (mongoose.connection.readyState !== 0) {
-            await mongoose.connection.close();
-        }
+        await dbHandler.closeDatabase();
         process.env.JWT_SECRET = originalSecret;
     }, 20000);
 

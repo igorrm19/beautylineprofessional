@@ -25,10 +25,10 @@ const getProductById = async (req, res) => {
         res.status(200).json(product);
 
     } catch (err) {
-        console.error(err);
         if (err.name === "CastError") {
             return res.status(400).json({ message: "Invalid product ID" });
         }
+        console.error(err);
         res.status(500).json({ message: "Error fetching product" });
     }
 }
@@ -83,7 +83,7 @@ const updateProduct = async (req, res) => {
             req.params.id,
             req.body,
             {
-                new: true,
+                returnDocument: 'after',
                 runValidators: true,
                 context: "query",
             }
@@ -108,6 +108,7 @@ const updateProduct = async (req, res) => {
                 message: "Product name already exists"
             });
         }
+        console.error(err);
         return res.status(500).json({ message: "Internal error" });
     }
 }
