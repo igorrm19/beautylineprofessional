@@ -6,7 +6,6 @@ const DUPLICATED_PRODUCT_CODE = 11000;
 const getProducts = async (req, res) => {
     try {
         const products = await Product.find();
-
         if (products.length === 0) {
             return res.status(200).json([]);
         }
@@ -20,7 +19,6 @@ const getProducts = async (req, res) => {
 const getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
-
         if (!product) {
             return res.status(404).send({ message: "Product not found" });
         }
@@ -28,7 +26,6 @@ const getProductById = async (req, res) => {
 
     } catch (err) {
         console.error(err);
-
         if (err.name === "CastError") {
             return res.status(400).json({ message: "Invalid product ID" });
         }
@@ -49,7 +46,6 @@ const createProduct = async (req, res) => {
             brand,
             image
         } = req.body;
-
         const newProduct = new Product({
             name,
             description,
@@ -92,11 +88,9 @@ const updateProduct = async (req, res) => {
                 context: "query",
             }
         );
-
         if (!result) {
             return res.status(404).send({ message: "Product not found" });
         }
-
         res.status(200).json(result);
 
     } catch (err) {
@@ -120,7 +114,6 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     try {
         const result = await Product.findByIdAndDelete(req.params.id);
-
         if (!result) {
             return res.status(404).send({ message: "Product not found" });
         }
